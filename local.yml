@@ -1,0 +1,24 @@
+---
+- name: Testing Ansible Pull method
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Update apt
+      apt:
+        update_cache: yes
+    - name: Install  apache
+      apt:
+        name: apache2
+        state: present
+    - name: Enable apache
+      service:
+        name: apache2
+        state: started
+    - name: copy files
+      copy:
+        src: ./index.html
+        dest: /var/www/html/index.html
+
+
+
+
